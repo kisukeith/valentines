@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Valentine Letter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aldrich&family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Falling Hearts -->
+    <div id="dreamy-overlay"></div>
+    <div id="dreamy-particles"></div>
+    <div id="hearts-container"></div>
+
+    <!-- Envelope Screen -->
+    <div id="envelope-container">
+      <img src="envelope.png" alt="Envelope" id="envelope" />
+      <h1 >♡ I have a letter for you ♡</h1>
+    </div>
+
+    <!-- Letter Screen -->
+    <div id="letter-container">
+      <div class="letter-window">
+        <h1 id="letter-title">Madot, will you be my Valentine?🥰</h1>
+        <p id="no-message">Stop it Madot 😭 Just press YES</p>
+
+        <!-- Cat with bouquet overlay -->
+        <div class="cat-wrapper">
+          <img src="cat_heart.gif" class="cat" id="letter-cat" />
+          <img src="bouquet.png" class="bouquet" id="bouquet" />
+        </div>
+
+        <div class="buttons" id="letter-buttons">
+          <img src="yes.png" class="btn yes-btn" alt="Yes" />
+
+          <div class="no-wrapper">
+            <img src="no.png" class="btn no-btn" alt="No" />
+          </div>
+        </div>
+
+        <p id="final-text" class="final-text" style="display: none">
+          <strong>Valentine's Date:</strong> Tagaytay, February 14, 2026, See you! 💚<br />
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,398 @@
+/* ========================= */
+/* BODY + BACKGROUND */
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("heart-bg.jpg");
+  background-size: cover;
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+/* ========================= */
+/* FALLING HEARTS BACKGROUND */
+#hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  top: -50px;
+  font-size: 28px;
+  animation: fall linear forwards;
+  opacity: 0.9;
+}
+
+@keyframes fall {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* ========================= */
+/* ENVELOPE SCREEN */
+#envelope-container {
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+}
+
+#envelope {
+  width: 180px; /* slightly smaller for space */
+  cursor: pointer;
+  animation: envelopeShake 1.5s infinite ease-in-out;
+}
+
+@keyframes envelopeShake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.envelope-opening {
+  animation: openEnvelope 1.2s ease forwards;
+}
+
+@keyframes openEnvelope {
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.05) rotate(5deg); }
+  100% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+}
+
+/* ========================= */
+/* LETTER WINDOW */
+#letter-container {
+  display: none;
+  position: fixed;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+/* ========================= */
+/* LETTER WINDOW - LOWER CONTENT */
+
+
+.letter-window {
+  width: 90vw;
+  max-width: 450px;
+  min-width: 280px;
+  aspect-ratio: 1 / 1.2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+
+  background-image: url("window.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  border-radius: 12px;
+  gap: 6px;
+
+  padding:35% 7% 7% 7%;  /* increased top padding to push content down */
+  transform: scale(1);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.letter-window.open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ========================= */
+/* TITLE */
+h1#letter-title {
+  font-size: 20px;
+  margin: 0 0 6px 0; /* slightly more bottom margin */
+  line-height: 1.2;
+  padding: 0%;
+}
+
+/* ========================= */
+/* CAT IMAGE */
+#letter-cat {
+  width: 100px; /* slightly smaller to fit */
+  margin: 0; /* more margin to space it down */
+  padding: 0;
+  align-content: center;
+  transition: width 0.4s ease;
+}
+
+.cat-dance {
+  animation: dance 0.4s infinite alternate;
+}
+
+@keyframes dance {
+  0% { transform: rotate(-5deg) translateY(0px); }
+  100% { transform: rotate(5deg) translateY(-10px); }
+}
+
+/* ========================= */
+/* YES + NO BUTTONS */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* smaller gap */
+  margin-top: 6px;
+}
+
+.yes-btn, .no-btn {
+  width: 65px; /* smaller buttons to fit box */
+  height: auto;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.no-btn { cursor: default; }
+
+/* ========================= */
+/* FINAL TEXT */
+.final-text {
+  font-size: 14px;
+  text-align: center;
+  display: inline-block;
+  padding: 2px 6px;
+  background-color: rgba(255, 240, 240, 0.5);
+  border-radius: 5px;
+  margin-top: 12px; /* pushed lower */
+}
+
+/* ========================= */
+/* NO MESSAGE */
+#no-message {
+  margin-top: 8px;
+  font-size: 28px;
+  color: #000;
+  font-weight: 600;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+  text-shadow: 0 0 6px rgba(255, 95, 162, 0.5);
+}
+
+#no-message.show {
+  opacity: 1;
+  transform: scale(1);
+  animation: wiggleText 0.4s ease;
+}
+
+@keyframes wiggleText {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.05) rotate(-2deg); }
+  50% { transform: scale(1.05) rotate(2deg); }
+  75% { transform: scale(1.05) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ========================= */
+/* BOUQUET CENTERED */
+.bouquet {
+  position: fixed;
+  width: 100px;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  cursor: pointer;
+}
+
+.bouquet.shake {
+  animation: bouquetShake 0.6s infinite ease-in-out;
+}
+
+@keyframes bouquetShake {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  25% { transform: translateX(-50%) rotate(6deg); }
+  50% { transform: translateX(-50%) rotate(-6deg); }
+  75% { transform: translateX(-50%) rotate(6deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
+}
+
+/* ========================= */
+/* PETALS PARTICLES */
+.petal {
+  position: fixed;
+  font-size: 18px; /* slightly smaller */
+  pointer-events: none;
+  z-index: 999;
+  animation: petalFly 1.6s ease-out forwards;
+}
+
+@keyframes petalFly {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) scale(0.7); opacity: 0; }
+}
+
+/* ========================= */
+/* SPARKLE PARTICLES */
+.sparkle {
+  position: fixed;
+  font-size: 18px; /* slightly smaller */
+  pointer-events: none;
+  z-index: 999;
+  animation: sparklePop 1.2s ease-out forwards;
+}
+
+@keyframes sparklePop {
+  0% { transform: translate(0, 0) scale(0.8); opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) scale(1.4); opacity: 0; }
+}
+
+/* ========================= */
+/* DREAMY OVERLAY */
+#dreamy-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle at top left, rgba(255, 182, 193, 0.35), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(255, 105, 180, 0.25), transparent 65%),
+              radial-gradient(circle at center, rgba(255, 255, 255, 0.12), transparent 70%);
+  backdrop-filter: blur(2px) saturate(1.4);
+  animation: dreamyGlow 6s infinite alternate ease-in-out;
+}
+
+@keyframes dreamyGlow {
+  0% { opacity: 0.55; filter: brightness(1); }
+  100% { opacity: 0.85; filter: brightness(1.1); }
+}
+
+/* ========================= */
+/* DREAMY FLOATING LIGHTS */
+#dreamy-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.dream-particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0.6;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 16px rgba(255, 182, 193, 0.8),
+              0 0 28px rgba(255, 105, 180, 0.5);
+  animation: floatDream linear infinite;
+}
+
+@keyframes floatDream {
+  from { transform: translateY(110vh) scale(0.8); opacity: 0; }
+  20% { opacity: 0.7; }
+  to { transform: translateY(-20vh) scale(1.2); opacity: 0; }
+}
+
+/* ========================= */
+/* MEDIA QUERIES FOR SMALL SCREENS */
+@media (max-width: 768px) {
+  .letter-window { width: 95vw; max-width: 380px; padding: 10% 4% 4% 4%; gap: 5px; }
+  h1#letter-title { font-size: 18px; margin-bottom: 3px; }
+  #letter-cat { width: 90px; margin: 3px 0; }
+  .buttons .yes-btn, .buttons .no-btn { width: 60px; }
+  .final-text { font-size: 12px; padding: 2px 4px; margin-top: 6px; }
+}
+
+@media (max-width: 480px) {
+  .letter-window { width: 98vw; max-width: 280px; padding: 8% 3% 3% 3%; gap: 4px; }
+  h1#letter-title { font-size: 16px; margin-bottom: 2px; }
+  #letter-cat { width: 75px; margin: 2px 0; }
+  .buttons .yes-btn, .buttons .no-btn { width: 50px; }
+  .final-text { font-size: 10px; padding: 1px 3px; margin-top: 5px; }
+}
+
+#letter-cat {
+  width: 100px;
+  margin: 0;
+  padding: 0;
+  align-content: center;
+  transition: width 0.4s ease;
+  filter: drop-shadow(0 0 8px #3cff8f);
+  animation: catAura 2s infinite alternate ease-in-out;
+}
+
+@keyframes catAura {
+  0% {
+    filter: drop-shadow(0 0 6px #3cff8f);
+  }
+  100% {
+    filter: drop-shadow(0 0 20px #00ff66);
+  }
+}
+
+/* ========================= */
+/* CAT HALO + AURA */
+.cat-wrapper {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* glowing circle behind cat */
+.cat-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,140,0.5), transparent 70%);
+  filter: blur(12px);
+  z-index: -1;
+  animation: haloPulse 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes haloPulse {
+  from { transform: scale(0.9); opacity: 0.6; }
+  to { transform: scale(1.2); opacity: 1; }
+}
+
+/* base cat glow */
+#letter-cat {
+  filter: drop-shadow(0 0 8px #3cff8f);
+  animation: catAura 2s infinite alternate ease-in-out;
+}
+
+@keyframes catAura {
+  0% { filter: drop-shadow(0 0 6px #3cff8f); }
+  100% { filter: drop-shadow(0 0 20px #00ff66); }
+}
+
+/* SUPER aura after YES */
+#letter-cat.super-aura {
+  animation: catAuraSuper 1s infinite alternate ease-in-out;
+}
+
+@keyframes catAuraSuper {
+  0% { filter: drop-shadow(0 0 12px #00ff66); }
+  100% { filter: drop-shadow(0 0 35px #00ff66); }
+}
+
+/* bouquet glow */
+.bouquet.glow {
+  filter: drop-shadow(0 0 15px #00ff66);
+}
